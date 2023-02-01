@@ -1,3 +1,6 @@
 micronaut:
   application:
     name: telegramSender
+
+telegram:
+  token: ${TELEGRAM_TOKEN:`foo`}

@@ -26,6 +26,13 @@ dependencies {
     implementation("javax.annotation:javax.annotation-api")
     implementation("io.micronaut:micronaut-http-client")
     runtimeOnly("ch.qos.logback:logback-classic")
+
+    // https://mvnrepository.com/artifact/org.telegram/telegrambots
+    implementation group: 'org.telegram', name: 'telegrambots', version: '6.4.0'
+    // https://mvnrepository.com/artifact/org.telegram/telegrambots
+    implementation ("org.telegram:telegrambots:6.4.0")
+
+
 }
 
 mainClassName = "com.marcosflobo.Application"
