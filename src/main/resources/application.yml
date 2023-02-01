@@ -3,4 +3,5 @@ micronaut:
     name: telegramSender
 
 telegram:
+  username: ${TELEGRAM_USERNAME:`bar`}
   token: ${TELEGRAM_TOKEN:`foo`}
