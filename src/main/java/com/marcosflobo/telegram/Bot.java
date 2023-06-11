@@ -1,15 +1,7 @@
 package com.marcosflobo.telegram;
 
 import io.micronaut.context.annotation.Property;
-import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
-
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.ByteArrayInputStream;
-import java.net.URLConnection;
 
 import javax.inject.Singleton;
 
@@ -66,12 +58,13 @@ public class Bot extends TelegramLongPollingBot {
     }
   }
 
-  public void sendAudio(byte[] audioBytes) {
+  public void sendAudio(String urlAudio) {
 
     log.info("Building InputFile..");
-    InputStream is = new ByteArrayInputStream(audioBytes);
-    InputFile audio = new InputFile(is, "Vivaldi_-_Four_Seasons_4_Winter_Air_Force_Strings_-_United_States_Air_Force_Band.mp3");
+    System.out.println("Building InputFile with URL " + urlAudio + "..");
+    InputFile audio = new InputFile(urlAudio);
     log.info("InputFile built");
+    System.out.println("InputFile built");
 
     SendAudio message = SendAudio.builder()
       .chatId(userId)
@@ -81,6 +74,7 @@ public class Bot extends TelegramLongPollingBot {
       .title("Vivaldi_-_Four_Seasons_4_Winter_Air_Force_Strings")
       .performer("Vivaldi")
       .build();
+    System.out.println("SendAudio built");
     
 
     sendToTelegram(message);
@@ -89,11 +83,13 @@ public class Bot extends TelegramLongPollingBot {
   private void sendToTelegram(SendAudio message) {
     try {
       log.info("Sending to Telegram...");
+      System.out.println("Sending to Telegram...");
       execute(message);                        //Actually sending the message
       log.info("Message sent!");
+      System.out.println("Message sent!");
     } catch (TelegramApiException e) {
-      log.error("Something happend and the message was not sent to Telegram", e);
-      throw new RuntimeException(e);      //Any error will be printed here
+      System.out.println("Something happend and the message was not sent to Telegram");
+      System.out.println(e);
     }
   }
 

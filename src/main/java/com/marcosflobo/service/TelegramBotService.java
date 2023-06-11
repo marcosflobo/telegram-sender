@@ -16,10 +16,10 @@ public class TelegramBotService {
 		this.bot = bot;
 	}
 
-    public void sendAudio(byte[] audioBytes) {
+    public void sendAudio(String urlAudio) {
 
         log.info("Sending audio to Telegram Bot");
-        bot.sendAudio(audioBytes);
+        bot.sendAudio(urlAudio);
     }
 
     public void send(String what) {

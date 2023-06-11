@@ -1,9 +1,9 @@
 package com.marcosflobo.controller;
 
+import com.marcosflobo.dto.RequestHelloAudio;
 import com.marcosflobo.service.TelegramBotService;
 
 import io.micronaut.http.HttpResponse;
-import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
@@ -20,12 +20,11 @@ public class HelloController {
         this.telegramBotService = telegramBotService;
     }
 
-    @Post(value = "/audio", consumes = MediaType.APPLICATION_OCTET_STREAM)
-    public HttpResponse<String> helloAudio(@Body byte[] data) {
+    @Post(value = "/audio")
+    public HttpResponse<String> helloAudio(@Body RequestHelloAudio request) {
 
         log.info("Request to send audio received");
-        telegramBotService.sendAudio(data);
-
+        telegramBotService.sendAudio(request.getUrl());
         return HttpResponse.ok();
     }
 
