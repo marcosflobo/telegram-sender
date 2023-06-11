@@ -4,3 +4,4 @@ micronaut:
 
 telegram:
   token: ${TELEGRAM_TOKEN:`foo`}
+  botusername: ${TELEGRAM_BOTUSERNAME:`bar`}
